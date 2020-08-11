@@ -1,5 +1,7 @@
 # This code produces the summary map figures shown in the paper and supplement. Note: I've hard-coded the colorbars to make the breaks correspond to nice numbers. This is dangerous and will need to be changed if the analysis changes.
 
+#nohup R CMD BATCH map_figures.R map_figures.Rout &
+
 rm(list=ls())
 library(fields)
 library(lubridate)
@@ -95,7 +97,7 @@ split.screen( rbind(c(0, .9,0,1), c(.9,1,0,1)))
 split.screen(c(2,3), screen = 1)-> ind
 
 screen(ind[1])
-image.plot(lon_convert_subs, lat_subs, meanChangeCoefsToPlot[,,1]*ifelse(landfrac_CONUS >= 0.5, 1, NA), 
+image(lon_convert_subs, lat_subs, meanChangeCoefsToPlot[,,1]*ifelse(landfrac_CONUS >= 0.5, 1, NA), 
       breaks = seq(0.8-0.05, 2.2+0.05, by = 0.1),
       col = designer.colors(15, c(start = "blue", middle = "white",end = "red"),
                             x = c(0,
@@ -106,7 +108,7 @@ image.plot(lon_convert_subs, lat_subs, meanChangeCoefsToPlot[,,1]*ifelse(landfra
       #                            (1 - min(meanChangeCoefsToPlot))/(max(meanChangeCoefsToPlot) - min(meanChangeCoefsToPlot)),
       #                            1)),
       #zlim = c(min(meanChangeCoefsToPlot), max(meanChangeCoefsToPlot)),
-      xlab = "", ylab = "", main = "June 1", axes = FALSE,
+      xlab = "", ylab = "", main = "July 1", axes = FALSE,
       cex.main = 1.5)
 map("world", add = TRUE, fill = FALSE, col = "black")
 map("state", add = TRUE, fill = FALSE, col = "black")
