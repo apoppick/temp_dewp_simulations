@@ -341,9 +341,10 @@ dev.off()
 ## Pearson statistics
 (worst_pearson_stat <- which.max(apply(pearson_stat,c(1,2), sum)*ifelse(landfrac_CONUS >= 0.5, 1, NA)))
 (best_pearson_stat <- which.min(apply(pearson_stat,c(1,2), sum)*ifelse(landfrac_CONUS >= 0.5, 1, NA)))
-(typical_pearson_stat <- which(apply(pearson_stat,c(1,2), sum)*ifelse(landfrac_CONUS >= 0.5, 1, NA) ==
-                      median(apply(pearson_stat,c(1,2), sum)*ifelse(landfrac_CONUS >= 0.5, 1, NA), 
-                             na.rm = TRUE)))
+(typical_pearson_stat <- 896) # the quantile regression fit is slightly random causing the location of the median Pearson statistic to change each time. Not ideal to hard code, but just an example of a typical fit.
+  # which(apply(pearson_stat,c(1,2), sum)*ifelse(landfrac_CONUS >= 0.5, 1, NA) ==
+  #                     median(apply(pearson_stat,c(1,2), sum)*ifelse(landfrac_CONUS >= 0.5, 1, NA),
+  #                            na.rm = TRUE)))
 
 pdf('/research/Temp_Dewpt/Results/figures/validation/quantModel_pearsonStat.pdf', height = 7, width = 11)
 par(mfrow = c(1,1), mar = c(2,2,2,2), oma = c(1.5,0,0,1.5))
